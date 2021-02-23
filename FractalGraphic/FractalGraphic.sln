@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HostAPI", "HostAPI\HostAPI.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SierpinskiFractal", "SierpinskiFractal\SierpinskiFractal.csproj", "{4015D352-26E5-4186-BBB8-BEDD618D3982}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatterns", "DesignPatterns\DesignPatterns.csproj", "{015656A3-8E90-483F-B664-6378157F4572}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{4015D352-26E5-4186-BBB8-BEDD618D3982}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4015D352-26E5-4186-BBB8-BEDD618D3982}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4015D352-26E5-4186-BBB8-BEDD618D3982}.Release|Any CPU.Build.0 = Release|Any CPU
-		{015656A3-8E90-483F-B664-6378157F4572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{015656A3-8E90-483F-B664-6378157F4572}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{015656A3-8E90-483F-B664-6378157F4572}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{015656A3-8E90-483F-B664-6378157F4572}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

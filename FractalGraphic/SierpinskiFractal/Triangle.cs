@@ -7,21 +7,39 @@ namespace SierpinskiFractal
 {
     public class Triangle
     {
+        public delegate void TriangleMessageHandler(string message);
+        public delegate void TrianglePointsHandler(object point);
+
+        public event TrianglePointsHandler CreatedPointsClass;
+        public event TrianglePointsHandler CreatedPointsStruct;
+
+        public event TriangleMessageHandler CreatedPoints;
+
         private List<Point> attractors = new List<Point>();
         private float figureSize = 0.165f;
 
-        
+
         public Triangle(Size size)
         {
             attractors = GetAttractors(size);
         }
-       
+
         public Triangle(float width, float height)
+        {
+            attractors = GetAttractors(new Size(width, height));
+        }
+
+        public void CreateAttractors(Size size)
+        {
+            attractors = GetAttractors(size);
+        }
+       
+        public void CreateAttractors(float width, float height)
         {
             attractors = GetAttractors(new Size(width,height));
         }
 
-
+        //ПЕРЕДЕЛАЙ НАХУЙ
         private List<Point> GetAttractors(Size size)
         {
             List<Point> _attractors = new List<Point>()
@@ -52,6 +70,8 @@ namespace SierpinskiFractal
             {
                 points.Add(pointGenerator.GetPoint(points[i-1], 0));
             }
+            CreatedPointsStruct?.Invoke(points);
+            CreatedPoints?.Invoke("Point(structures) created!");
             return points;
         }
 
@@ -70,6 +90,8 @@ namespace SierpinskiFractal
                         pointGenerator.GetPoint(
                                 new Point(points[i - 1]), 0)));
             }
+            CreatedPointsClass?.Invoke(points);
+            CreatedPoints?.Invoke("Point(class) created!");
             return points;
         }
 
