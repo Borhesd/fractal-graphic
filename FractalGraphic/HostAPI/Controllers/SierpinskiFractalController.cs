@@ -15,28 +15,26 @@ namespace HostAPI.Controllers
     {
 
         private readonly ILogger<SierpinskiFractalController> _logger;
-        private readonly Services.TriangleFractalService _triangleFractal;
+        private readonly ITriangle _triangleFractal;
 
-        public SierpinskiFractalController(ILogger<SierpinskiFractalController> logger, Services.TriangleFractalService triangleFractal)
+        public SierpinskiFractalController(ILogger<SierpinskiFractalController> logger, ITriangle triangleFractal)
         {
             _logger = logger;
             _triangleFractal = triangleFractal;
         }
 
         [HttpGet]
-        public JsonResult CreateFractal(int pointCount, float width, float height)
+        public IActionResult CreateFractal(int pointCount, float width, float height)
         {
             try
             {
                 _triangleFractal.CreateAttractors(width,height);
-                Response response = new Response(_triangleFractal.CreateFractal(pointCount));
-                _logger.LogInformation("Triangle fractal created.");
-                return Json(response);
+                return Json(_triangleFractal.GetPointsClass(pointCount));
             }
-            catch
+            catch(Exception ex)
             {
-                _logger.LogError("Triangle fractal created error.");
-                return Json(new Response(HttpStatusCode.InternalServerError, message: "ERROR"));
+                _logger.LogError($"Triangle fractal created error: {ex.Message}");
+                return BadRequest();
             }
         }
 

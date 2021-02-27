@@ -6,7 +6,7 @@ namespace HostAPI
     {
         public static void AddFeatures(this IServiceCollection services)
         {
-            services.AddScoped<Services.TriangleFractalService>();
+            services.AddTransient<SierpinskiFractal.ITriangle,SierpinskiFractal.Triangle>();
         }
 
     }

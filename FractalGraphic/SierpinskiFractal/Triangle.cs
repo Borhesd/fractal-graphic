@@ -5,7 +5,7 @@ using SierpinskiFractal.Structures;
 
 namespace SierpinskiFractal
 {
-    public class Triangle
+    public class Triangle:ITriangle
     {
         public delegate void TriangleMessageHandler(string message);
         public delegate void TrianglePointsHandler(object point);
@@ -19,6 +19,10 @@ namespace SierpinskiFractal
         private float figureSize = 0.165f;
 
 
+        public Triangle(Classes.Size size)
+        {
+            attractors = GetAttractors(new Size(size));
+        } 
         public Triangle(Size size)
         {
             attractors = GetAttractors(size);
@@ -27,6 +31,11 @@ namespace SierpinskiFractal
         public Triangle(float width, float height)
         {
             attractors = GetAttractors(new Size(width, height));
+        }
+
+        public void CreateAttractors(Classes.Size size)
+        {
+            attractors = GetAttractors(new Size(size));
         }
 
         public void CreateAttractors(Size size)
