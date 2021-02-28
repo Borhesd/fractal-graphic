@@ -47,27 +47,27 @@ namespace SierpinskiFractal
         {
             attractors = GetAttractors(new Size(width,height));
         }
-
-        //ПЕРЕДЕЛАЙ НАХУЙ
+        /// <summary>
+        /// Получение аттракторов в виде равнобедренного треугольника
+        /// </summary>
         private List<Point> GetAttractors(Size size)
         {
-            List<Point> _attractors = new List<Point>()
-                    {
-                        new Point(size.Width - (size.Width*figureSize),
-                         size.Height - (size.Height*((figureSize/100f) * 6.06f))),
+            //Расположение точки А исходя из заданного размера
+            Point A = new Point(size.Width - (size.Width * figureSize),
+                         size.Height - (size.Height * ((figureSize / 100f) * 6.06f)));
 
-                        new Point(size.Width*figureSize,//0.165f
-                         size.Height - (size.Height*((figureSize/100f) * 6.06f)))
-                    };
-
-            _attractors.Add(new Point(
-                   (float)((_attractors[1].x - _attractors[0].x) * Math.Cos(1.05f) -
-                   (_attractors[1].y - _attractors[0].y) * Math.Sin(1.05f) + _attractors[0].x),
-                   (float)((_attractors[1].x - _attractors[0].x) * Math.Sin(1.05f) +
-                   (_attractors[1].y - _attractors[0].y) * Math.Cos(1.05f) + _attractors[0].y)
-                   ));
-
-            return _attractors;
+            //Расположение точки B исходя из заданного размера
+            Point B = new Point(size.Width * figureSize,
+                         size.Height - (size.Height * ((figureSize / 100f) * 6.06f)));
+            
+            //Расчет координаты X для точки C
+            float xC = (float)((B.x - A.x) * Math.Cos(1.05f) - (B.y - A.y) * Math.Sin(1.05f) + A.x);
+            //Расчет координаты Y для точки C
+            float yC = (float)((B.x - A.x) * Math.Sin(1.05f) + (B.y - A.y) * Math.Cos(1.05f) + A.y);
+            //Создание точки C
+            Point C = new Point(xC, yC);
+            
+            return new List<Point> { A,B,C };
         }
 
         public List<Point> GetPointsStruct(int count)
