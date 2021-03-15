@@ -33,6 +33,8 @@ namespace SierpinskiFractal
             attractors = GetAttractors(new Size(width, height));
         }
 
+        public Triangle() { }
+
         public void CreateAttractors(Classes.Size size)
         {
             attractors = GetAttractors(new Size(size));

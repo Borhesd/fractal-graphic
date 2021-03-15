@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SierpinskiFractal;
 using System.Net;
+using Microsoft.AspNetCore.Cors;
 
 namespace HostAPI.Controllers
 {
@@ -24,7 +25,8 @@ namespace HostAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateFractal(int pointCount, float width, float height)
+        [EnableCors("AllowAllOrigin")]
+        public IActionResult GetTriangle(int pointCount, float width, float height)
         {
             try
             {

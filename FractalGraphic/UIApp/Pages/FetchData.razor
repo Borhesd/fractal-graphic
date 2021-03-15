@@ -1,0 +1,54 @@
+﻿@page "/fetchdata"
+@using System.Net.Http
+@inject HttpClient Http
+@using Data;
+
+<h1>Fractal "<a href="https://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle">Sierpiński triangle</a>" point list</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+<b style="color:darkred;">Attention! This application is not optimized to work with a large number of points.</b>
+<hr />
+Point count: <input @bind-value="@pointCount" />
+Width: <input @bind-value="@width" />
+Heigth: <input @bind-value="@height" />
+<button @onclick="GetNewPointList">Get new point list</button>
+<br /><br />
+
+@if (points == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>X</th>
+                <th>Y</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < points.Count; i++)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@points[i].X</td>
+                    <td>@points[i].Y</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private int pointCount = 100;
+    private float width = 100;
+    private float height = 100;
+
+    private List<Point> points = null;
+
+    protected override async Task OnInitializedAsync() => await GetNewPointList();
+    private async Task GetNewPointList() => points = await new SierpinskiFractalsAPI(Http).GetPointsAsync(pointCount, width, height);
+
+}
