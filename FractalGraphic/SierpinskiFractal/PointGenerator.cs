@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Collections.Generic;
-using SierpinskiFractal.Structures;
+using SierpinskiFractal.Data;
 
 namespace SierpinskiFractal
 {

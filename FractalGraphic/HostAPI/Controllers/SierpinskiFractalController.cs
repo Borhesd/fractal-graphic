@@ -31,7 +31,7 @@ namespace HostAPI.Controllers
             try
             {
                 _triangleFractal.CreateAttractors(width,height);
-                return Json(_triangleFractal.GetPointsClass(pointCount));
+                return Json(_triangleFractal.GetPoints(pointCount));
             }
             catch(Exception ex)
             {

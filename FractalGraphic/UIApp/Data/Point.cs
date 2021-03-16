@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace UIApp.Data
 {
-    public class Point
+    public struct Point
     {
-        public float X { get; set; }
-        public float Y { get; set; }
+        public float X;
+        public float Y;
     }
 }

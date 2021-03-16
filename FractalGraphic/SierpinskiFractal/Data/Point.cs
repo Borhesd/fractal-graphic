@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SierpinskiFractal.Structures
+﻿namespace SierpinskiFractal.Data
 {
     public struct Point
     {
@@ -13,12 +9,6 @@ namespace SierpinskiFractal.Structures
         {
             this.x = x;
             this.y = y;
-        }
-
-        public Point(Classes.Point point)
-        {
-            x = point.X;
-            y = point.Y;
         }
 
         public static Point operator+(Point left, Point right)

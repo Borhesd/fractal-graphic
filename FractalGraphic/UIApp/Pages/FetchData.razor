@@ -29,7 +29,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @for (int i = 0; i < points.Count; i++)
+            @for (int i = 0; i < points.Length; i++)
             {
                 <tr>
                     <td>@i</td>
@@ -46,7 +46,7 @@ else
     private float width = 100;
     private float height = 100;
 
-    private List<Point> points = null;
+    private Point[] points = null;
 
     protected override async Task OnInitializedAsync() => await GetNewPointList();
     private async Task GetNewPointList() => points = await new SierpinskiFractalsAPI(Http).GetPointsAsync(pointCount, width, height);

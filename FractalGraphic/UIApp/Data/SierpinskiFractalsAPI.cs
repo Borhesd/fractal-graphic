@@ -10,9 +10,9 @@ namespace UIApp.Data
     {
         public SierpinskiFractalsAPI(HttpClient http) : base("https://localhost:5001/SierpinskiFractal", http) { }
 
-        public async Task<List<Point>> GetPointsAsync(int pointCount, float width, float height)
+        public async Task<Point[]> GetPointsAsync(int pointCount, float width, float height)
         {
-            return await GetAsync<List<Point>>($"GetTriangle?pointCount={pointCount}&width={width}&height={height}");
+            return await GetAsync<Point[]>($"GetTriangle?pointCount={pointCount}&width={width}&height={height}");
         }
     } 
 }

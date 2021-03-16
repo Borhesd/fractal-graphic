@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SierpinskiFractal.Structures
+﻿namespace SierpinskiFractal.Data
 {
     public struct Size
     {
@@ -13,12 +9,6 @@ namespace SierpinskiFractal.Structures
         {
             this.Width = width;
             this.Height = height;
-        }
-
-        public Size(Classes.Size size)
-        {
-            Width = size.Width;
-            Height = size.Height;
         }
 
         public static Size operator +(Size left, Size right)

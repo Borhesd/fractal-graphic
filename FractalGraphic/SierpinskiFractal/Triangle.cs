@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using SierpinskiFractal.Structures;
+using SierpinskiFractal.Data;
 
 namespace SierpinskiFractal
 {
@@ -10,7 +9,6 @@ namespace SierpinskiFractal
         public delegate void TriangleMessageHandler(string message);
         public delegate void TrianglePointsHandler(object point);
 
-        public event TrianglePointsHandler CreatedPointsClass;
         public event TrianglePointsHandler CreatedPointsStruct;
 
         public event TriangleMessageHandler CreatedPoints;
@@ -18,11 +16,6 @@ namespace SierpinskiFractal
         private List<Point> attractors = new List<Point>();
         private float figureSize = 0.165f;
 
-
-        public Triangle(Classes.Size size)
-        {
-            attractors = GetAttractors(new Size(size));
-        } 
         public Triangle(Size size)
         {
             attractors = GetAttractors(size);
@@ -34,11 +27,6 @@ namespace SierpinskiFractal
         }
 
         public Triangle() { }
-
-        public void CreateAttractors(Classes.Size size)
-        {
-            attractors = GetAttractors(new Size(size));
-        }
 
         public void CreateAttractors(Size size)
         {
@@ -72,7 +60,7 @@ namespace SierpinskiFractal
             return new List<Point> { A,B,C };
         }
 
-        public List<Point> GetPointsStruct(int count)
+        public List<Point> GetPoints(int count)
         {
             List<Point> points = new List<Point>();
             PointGenerator pointGenerator = new PointGenerator(attractors);
@@ -82,27 +70,7 @@ namespace SierpinskiFractal
                 points.Add(pointGenerator.GetPoint(points[i-1], 0));
             }
             CreatedPointsStruct?.Invoke(points);
-            CreatedPoints?.Invoke("Point(structures) created!");
-            return points;
-        }
-
-        public List<Classes.Point> GetPointsClass(int count)
-        {
-            List<Classes.Point> points = new List<Classes.Point>();
-            PointGenerator pointGenerator = new PointGenerator(attractors);
-            points.Add(
-                new Classes.Point(
-                    pointGenerator.GetPoint(attractors[0], 0)));
-
-            for (int i = 1; i < count + 1; i++)
-            {
-                points.Add(
-                    new Classes.Point(
-                        pointGenerator.GetPoint(
-                                new Point(points[i - 1]), 0)));
-            }
-            CreatedPointsClass?.Invoke(points);
-            CreatedPoints?.Invoke("Point(class) created!");
+            CreatedPoints?.Invoke("Points created!");
             return points;
         }
 
