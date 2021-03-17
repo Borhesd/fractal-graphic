@@ -1,8 +1,23 @@
 ﻿@page "/"
 <div>
     <h1>This is <a href="https://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle">Sierpiński triangle</a></h1>
+    <h4>*Click on the image to play animation*</h4>
+    <hr />
+    <img src="@src" @onclick="PausePlayGif" width="500" height="500" style="box-shadow:0 4px 6px -1px rgba(0, 0, 0, 0.6);"/>
 
-    <img src="img/triangle.gif" width="500" height="500" style="box-shadow:0 4px 6px -1px rgba(0, 0, 0, 0.6);"/>
 </div>
+@code{
+    private string gif = "img/triangle.gif";
+    private string jpg = "img/triangle.jpg";
+    private string src = "img/triangle.jpg";
+
+    private void PausePlayGif()
+    {
+        if (src == jpg)
+            src = gif;
+        else
+            src = jpg;
+    }
+}
 
 

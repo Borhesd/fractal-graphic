@@ -7,7 +7,7 @@ namespace SierpinskiFractal
     {
         public void CreateAttractors(Size size);
         public void CreateAttractors(float width, float height);
-        public List<Point> GetPoints(int count);
+        public Point[] GetPoints(int count);
         
     }
 }

@@ -7,7 +7,7 @@ namespace UIApp.Data
 {
     public struct Point
     {
-        public float X;
-        public float Y;
+        public float X { get; set; }
+        public float Y { get; set; }
     }
 }

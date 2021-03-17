@@ -2,36 +2,36 @@
 {
     public struct Point
     {
-        public float x;
-        public float y;
+        public float X { get; set; }
+        public float Y { get; set; }
 
         public Point(float x, float y)
         {
-            this.x = x;
-            this.y = y;
+            this.X = x;
+            this.Y = y;
         }
 
         public static Point operator+(Point left, Point right)
         {
-            return new Point(x:left.x + right.x,y:left.y + right.y);
+            return new Point(x:left.X + right.X,y:left.Y + right.Y);
         }
 
         public static Point operator -(Point left, Point right)
         {
-            return new Point(x: left.x - right.x, y: left.y - right.y);
+            return new Point(x: left.X - right.X, y: left.Y - right.Y);
         }
 
         public static bool operator ==(Point left, Point right)
         {
-            return left.x == right.x && left.y == right.y;
+            return left.X == right.X && left.Y == right.Y;
         }
         public static bool operator !=(Point left, Point right)
         {
-            return left.x != right.x || left.y != right.y;
+            return left.X != right.X || left.Y != right.Y;
         }
         public override string ToString()
         {
-            return $"{x},{y}";
+            return $"{X},{Y}";
         }
 
         public override bool Equals(object obj)

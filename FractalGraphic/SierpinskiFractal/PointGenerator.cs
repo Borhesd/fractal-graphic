@@ -7,9 +7,9 @@ namespace SierpinskiFractal
 {
     class PointGenerator
     {
-        public List<Point> Attractors { get; set; }
+        public Point[] Attractors { get; set; }
 
-        public PointGenerator(List<Point> attractors)
+        public PointGenerator(Point[] attractors)
         {
             Attractors = attractors;
         }
@@ -17,20 +17,20 @@ namespace SierpinskiFractal
         public Point GetPoint(Point oldPoint, int coefficient)
         {
             Random random = RandomProvider.GetThreadRandom();
-            Point attractor = Attractors[random.Next(0, Attractors.Count)];
+            Point attractor = Attractors[random.Next(0, Attractors.Length)];
 
-            return new Point((oldPoint.x + (attractor.x * (1 + coefficient))) / (2 + coefficient),
-                (oldPoint.y + (attractor.y * (1 + coefficient))) / (2 + coefficient));
+            return new Point((oldPoint.X + (attractor.X * (1 + coefficient))) / (2 + coefficient),
+                (oldPoint.Y + (attractor.Y * (1 + coefficient))) / (2 + coefficient));
         }
 
         public Point GetPoint(Point oldPoint, int coefficient, ref int selectAttractor)
         {
             Random random = RandomProvider.GetThreadRandom();
-            selectAttractor = random.Next(0, Attractors.Count);
+            selectAttractor = random.Next(0, Attractors.Length);
             Point attractor = Attractors[selectAttractor];
 
-            return new Point((oldPoint.x + (attractor.x * (1 + coefficient))) / (2 + coefficient),
-                (oldPoint.y + (attractor.y * (1 + coefficient))) / (2 + coefficient));
+            return new Point((oldPoint.X + (attractor.X * (1 + coefficient))) / (2 + coefficient),
+                (oldPoint.Y + (attractor.Y * (1 + coefficient))) / (2 + coefficient));
         }
 
     }

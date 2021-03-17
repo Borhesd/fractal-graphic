@@ -13,7 +13,7 @@ namespace SierpinskiFractal
 
         public event TriangleMessageHandler CreatedPoints;
 
-        private List<Point> attractors = new List<Point>();
+        private Point[] attractors;
         private float figureSize = 0.165f;
 
         public Triangle(Size size)
@@ -40,7 +40,7 @@ namespace SierpinskiFractal
         /// <summary>
         /// Получение аттракторов в виде равнобедренного треугольника
         /// </summary>
-        private List<Point> GetAttractors(Size size)
+        private Point[] GetAttractors(Size size)
         {
             //Расположение точки А исходя из заданного размера
             Point A = new Point(size.Width - (size.Width * figureSize),
@@ -51,16 +51,16 @@ namespace SierpinskiFractal
                          size.Height - (size.Height * ((figureSize / 100f) * 6.06f)));
             
             //Расчет координаты X для точки C
-            float xC = (float)((B.x - A.x) * Math.Cos(1.05f) - (B.y - A.y) * Math.Sin(1.05f) + A.x);
+            float xC = (float)((B.X - A.X) * Math.Cos(1.05f) - (B.Y - A.Y) * Math.Sin(1.05f) + A.X);
             //Расчет координаты Y для точки C
-            float yC = (float)((B.x - A.x) * Math.Sin(1.05f) + (B.y - A.y) * Math.Cos(1.05f) + A.y);
+            float yC = (float)((B.X - A.X) * Math.Sin(1.05f) + (B.Y - A.Y) * Math.Cos(1.05f) + A.Y);
             //Создание точки C
             Point C = new Point(xC, yC);
             
-            return new List<Point> { A,B,C };
+            return new Point[] { A,B,C };
         }
 
-        public List<Point> GetPoints(int count)
+        public Point[] GetPoints(int count)
         {
             List<Point> points = new List<Point>();
             PointGenerator pointGenerator = new PointGenerator(attractors);
@@ -71,7 +71,7 @@ namespace SierpinskiFractal
             }
             CreatedPointsStruct?.Invoke(points);
             CreatedPoints?.Invoke("Points created!");
-            return points;
+            return points.ToArray();
         }
 
     }
